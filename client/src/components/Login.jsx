@@ -6,6 +6,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../css/Login.css'; // Ensure this path is correct
+import nstpLogo from '../assets/NSTP_LOGO.png';
 
 const clientId = '96467309918-sjb49jofskdnaffpravkqgu1o6p0a8eh.apps.googleusercontent.com';
 const recaptchaKey = '6Lfty3MqAAAAACp-CJm8DFxDW1GfjdR1aXqHbqpg';
@@ -58,7 +59,7 @@ function Login() {
     return (
         <GoogleOAuthProvider clientId={clientId}>
             <div className="logo">
-                <img src="../assets/NSTP_LOGO.png" alt="Logo" className="nstp_logo" />
+                <img src={nstpLogo} alt="Logo" className="nstp_logo" />
                 <div className="header-text">
                     <h6>NSTP INVENTORY &amp;</h6>
                     <h6>ONLINE REQUEST</h6>
