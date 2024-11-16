@@ -1,8 +1,7 @@
 // src/components/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
-// import Sidebar from './Sidebar';
-// import Navbar from './Navbar';
-import './Dashboard';
+import Sidebar from './AdminSidebar';
+import Navbar from './Navbar';
 import '../css/ReportsPage.css';
 
 
