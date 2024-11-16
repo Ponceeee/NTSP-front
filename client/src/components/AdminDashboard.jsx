@@ -1,195 +1,181 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+//src/components/UserDashboard.jsx
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DataTable from 'react-data-table-component';
-import Modal from 'react-modal';
-import Dashboard from './Dashboard';
+import Sidebar from './Sidebar';
+import Navbar from './Navbar';
+import '../css/Dashboard.css';
 
 function AdminDashboard() {
-    const [users, setUsers] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [editUser, setEditUser] = useState(null);
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    const [newUser, setNewUser] = useState({ email: '', name: '', role: '', department: '' });
     const navigate = useNavigate();
-
-    // Fetch users whenever the component mounts or when a user is added/updated
-    const fetchUsers = async () => {
-        try {
-            const response = await axios.get('http://localhost:3000/users/');
-            setUsers(response.data);
-        } catch (error) {
-            console.error('Error fetching users:', error);
-        }
-    };
+    const [overlayVisible, setOverlayVisible] = useState(false);
+    const [selectedItem, setSelectedItem] = useState({ title: '', image: '', status: '' });
+    const [borrowTime, setBorrowTime] = useState('');
+    const [isBookButtonActive, setIsBookButtonActive] = useState(false);
 
     useEffect(() => {
-        fetchUsers(); // Initial fetch of users
+        const token = sessionStorage.getItem('sessionToken');
+        if (!token) {
+            navigate('/login');
+        } else {
+            const decodedToken = JSON.parse(atob(token.split('.')[1]));
+            const currentTime = Math.floor(Date.now() / 1000);
+            if (decodedToken.exp < currentTime) {
+                sessionStorage.removeItem('sessionToken');
+                navigate('/login');
+            }
+        }
+    }, [navigate]);
+
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://apis.google.com/js/api.js";
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
     }, []);
+
+    useEffect(() => {
+        setIsBookButtonActive(!!borrowTime);
+    }, [borrowTime]);
 
     const handleLogout = () => {
         sessionStorage.removeItem('sessionToken');
         navigate('/login');
     };
 
-    const handleEditUser = (user) => {
-        setEditUser(user);
-        setIsEditModalOpen(true);
+    const openOverlay = (item) => {
+        setSelectedItem(item);
+        setOverlayVisible(true);
+        setBorrowTime('');
     };
 
-    const confirmEditUser = async () => {
-        try {
-            await axios.patch(`http://localhost:3000/users/${editUser.userID}`, editUser);
-            fetchUsers(); // Fetch updated list after edit
-            setIsEditModalOpen(false);
-        } catch (error) {
-            console.error('Error updating user:', error);
-        }
+    const closeOverlay = () => {
+        setOverlayVisible(false);
     };
-
-    const handleDeleteUser = async (userID) => {
-        if (window.confirm('Are you sure you want to delete this user?')) {
-            try {
-                await axios.delete(`http://localhost:3000/users/${userID}`);
-                fetchUsers(); // Fetch updated list after deletion
-            } catch (error) {
-                console.error('Error deleting user:', error);
-            }
-        }
-    };
-
-    const handleAddUser = () => {
-        setNewUser({ email: '', name: '', role: '', department: '' });
-        setIsAddModalOpen(true);
-    };
-
-    const confirmAddUser = async () => {
-        try {
-            await axios.post('http://localhost:3000/users/register', newUser);
-            fetchUsers(); // Fetch updated list after adding user
-            setIsAddModalOpen(false); // Close modal after adding user
-        } catch (error) {
-            console.error('Error adding user:', error);
-        }
-    };
-
-    const columns = [
-        { name: 'UserID', selector: (row) => row.userID, sortable: true },
-        { name: 'Email', selector: (row) => row.email, sortable: true },
-        { name: 'Name', selector: (row) => row.name, sortable: true },
-        { name: 'Role', selector: (row) => row.role, sortable: true },
-        { name: 'Department', selector: (row) => row.department, sortable: true },
-        {
-            name: 'Actions',
-            cell: (row) => (
-                <div>
-                    <button onClick={() => handleEditUser(row)}>Edit</button>
-                    <button onClick={() => handleDeleteUser(row.userID)}>Delete</button>
-                </div>
-            ),
-        },
-    ];
 
     return (
         <div className="admin-dashboard">
-            <Dashboard /,
-        <div style={{ padding: '20px' }}>
-            <h1>Admin Dashboard</h1>
-            <p>Welcome, Admin! Here you can manage users and view reports.</p>
+            <header>
+                <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet' />
+                <title>Admin Dashboard</title>
+            </header>
+            <Sidebar />
+            <section id="content">
+                <Navbar />
+                <main>
+                    <div className="head-title">
+                        <div className="left">
+                            <h1>Dashboard</h1>
+                            <ul className="breadcrumb">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><i className='bx bx-chevron-right'></i></li>
+                                <li><a className="active" href="#">Home</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-            {/* Add User button */}
-            <button onClick={handleAddUser}>Add User</button>
+                    <ul className="box-info">
+                        <li>
+                            <i className='bx bxs-calendar-check'></i>
+                            <span className="text">
+                                <h3>13</h3>
+                                <p>Pending Requests</p>
+                            </span>
+                        </li>
+                        <li>
+                            <i className='bx bxs-group'></i>
+                            <span className="text">
+                                <h3>5</h3>
+                                <p>Active Borrowers</p>
+                            </span>
+                        </li>
+                        <li>
+                            <i className='bx bxs-error-circle'></i>
+                            <span className="text">
+                                <h3>3</h3>
+                                <p>Overdue Items</p>
+                            </span>
+                        </li>
+                    </ul>
 
-            {/* Search bar */}
-            <input
-                type="text"
-                placeholder="Search by Email"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                style={{ margin: '20px 0', padding: '8px', width: '300px' }}
-            />
+                    <div className="table-data">
+                        <div className="order">
+                            <div className="head">
+                                <h3>Recent Requests</h3>
+                                <a href="/mainpage" className="view-all">View All</a>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Item</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Ian Dave Javier</td>
+                                        <td>LCD Projector</td>
+                                        <td>March 15, 2024</td>
+                                        <td><span className="status pending">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sern Ponce</td>
+                                        <td>HDMI Cable</td>
+                                        <td>March 14, 2024</td>
+                                        <td><span className="status completed">Approved</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-            {/* DataTable */}
-            <DataTable
-                title="Users List"
-                columns={columns}
-                data={users.filter((user) =>
-                    user.email.toLowerCase().includes(searchTerm.toLowerCase())
-                )}
-                pagination
-                highlightOnHover
-                striped
-            />
+                        <div className="quick-actions">
+                            <h2>Quick Actions</h2>
+                            <div className="quick-actions-buttons">
+                                <button className="action-btn add-new" onClick={() => openOverlay({ title: 'Add New Item' })}>
+                                    <i className="bx bx-plus-circle"></i>
+                                    Add New Item
+                                </button>
+                                <button className="action-btn review" onClick={() => openOverlay({ title: 'Review Requests' })}>
+                                    <i className="bx bx-list-check"></i>
+                                    Review Requests
+                                </button>
+                                <button className="action-btn scanner" onClick={() => openOverlay({ title: 'Scanner' })}>
+                                    <i className="bx bx-scan"></i>
+                                    Scanner
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </section>
 
-            {/* Logout button */}
-            <button onClick={handleLogout}>Logout</button>
-
-            {/* Edit Modal */}
-            {isEditModalOpen && (
-                <Modal isOpen={isEditModalOpen} onRequestClose={() => setIsEditModalOpen(false)}>
-                    <h2>Edit User</h2>
-                    <input
-                        type="text"
-                        placeholder="Email"
-                        value={editUser.email}
-                        onChange={(e) => setEditUser({ ...editUser, email: e.target.value })}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={editUser.name}
-                        onChange={(e) => setEditUser({ ...editUser, name: e.target.value })}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Role"
-                        value={editUser.role}
-                        onChange={(e) => setEditUser({ ...editUser, role: e.target.value })}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Department"
-                        value={editUser.department}
-                        onChange={(e) => setEditUser({ ...editUser, department: e.target.value })}
-                    />
-                    <button onClick={confirmEditUser}>Confirm</button>
-                    <button onClick={() => setIsEditModalOpen(false)}>Cancel</button>
-                </Modal>
-            )}
-
-            {/* Add Modal */}
-            {isAddModalOpen && (
-                <Modal isOpen={isAddModalOpen} onRequestClose={() => setIsAddModalOpen(false)}>
-                    <h2>Add User</h2>
-                    {/* Removed userID input field */}
-                    <input
-                        type="text"
-                        placeholder="Email"
-                        value={newUser.email}
-                        onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={newUser.name}
-                        onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Role"
-                        value={newUser.role}
-                        onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Department"
-                        value={newUser.department}
-                        onChange={(e) => setNewUser({ ...newUser, department: e.target.value })}
-                    />
-                    <button onClick={confirmAddUser}>Confirm</button>
-                    <button onClick={() => setIsAddModalOpen(false)}>Cancel</button>
-                </Modal>
+            {overlayVisible && (
+                <div className="overlay" id="borrowOverlay">
+                    <div className="overlay-content">
+                        <span className="close-btn" onClick={closeOverlay}>&times;</span>
+                        <h2>{selectedItem.title}</h2>
+                        <img id="selectedItemImage" src={selectedItem.image} alt={selectedItem.title} />
+                        <p id="selectedItemName">{selectedItem.title}</p>
+                        <input
+                            type="time"
+                            id="borrowTime"
+                            value={borrowTime}
+                            onChange={(e) => setBorrowTime(e.target.value)}
+                        />
+                        <button
+                            id="bookButton"
+                            disabled={!isBookButtonActive}
+                            className={isBookButtonActive ? 'active' : ''}
+                        >
+                            Book
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     );

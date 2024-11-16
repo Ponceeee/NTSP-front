@@ -719,3 +719,35 @@ body {
 .action-btn:hover {
     background-color: #0056b3;
 }
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.user-dashboard {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px; /* Adjust as needed */
+    background-color: #fff; /* Sidebar background color */
+}
+
+#content {
+    flex-grow: 1;
+    background-color: #f4f4f4; /* Content background color */
+}
+
+.admin-dashboard {
+    display: flex;
+    flex-direction: row;
+}
+
+#content {
+    flex-grow: 1;
+}
