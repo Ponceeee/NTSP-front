@@ -1,9 +1,9 @@
 //src/components/UserDashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from './Sidebar';
+import Sidebar from './AdminSidebar';
 import Navbar from './Navbar';
-import '../css/Dashboard.css';
+import '../css/AdminDashboard.css';
 
 function AdminDashboard() {
     const navigate = useNavigate();
@@ -64,7 +64,9 @@ function AdminDashboard() {
             </header>
             <Sidebar />
             <section id="content">
+                {/* Navbar Section */}
                 <Navbar />
+                {/* Main Content */}
                 <main>
                     <div className="head-title">
                         <div className="left">
