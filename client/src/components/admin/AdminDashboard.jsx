@@ -1,9 +1,9 @@
 //src/components/UserDashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from './AdminSidebar';
-import Navbar from './Navbar';
-import '../css/AdminDashboard.css';
+import Sidebar from '../AdminSidebar';
+import Navbar from '../Navbar';
+import '../../css/AdminDashboard.css';
 
 function AdminDashboard() {
     const navigate = useNavigate();
