@@ -47,12 +47,14 @@ function AdminDashboard() {
     };
 
     const openOverlay = (item) => {
+        console.log("Opening overlay for:", item);
         setSelectedItem(item);
         setOverlayVisible(true);
         setBorrowTime('');
     };
 
     const closeOverlay = () => {
+        console.log("Closing overlay");
         setOverlayVisible(false);
     };
 
@@ -65,7 +67,7 @@ function AdminDashboard() {
             <Sidebar />
             <section id="content">
                 {/* Navbar Section */}
-                <Navbar />
+                <Navbar className="navbar" />
                 {/* Main Content */}
                 <main>
                     <div className="head-title">

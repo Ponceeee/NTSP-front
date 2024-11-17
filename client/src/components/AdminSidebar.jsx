@@ -21,13 +21,15 @@ function Sidebar() {
                 <li><Link to="/request"><i className='bx bxs-shopping-bag-alt'></i><span className="text">Request</span></Link></li>
                 <li><Link to="/edit"><i className='bx bxs-message-square-add'></i><span className="text">Edit Items</span></Link></li>
                 <li><a href="/reports"><i className='bx bxs-message-dots'></i><span className="text">Returned</span></a></li>
+                <li><a href="/archive"><i class='bx bxs-archive'></i><span className="text">Archive</span></a></li>
+                <li><a href="/activity"><i class='bx bx-history'></i><span className="text">Activity</span></a></li>
             </ul>
             <ul className="side-menu">
                 <li><a href="../login/login.html" className="logout"><i className='bx bxs-log-out-circle'></i><span className="text">Logout</span></a></li>
             </ul>
-            {/* <button onClick={toggleSidebar} className="toggle-button">
+            <button onClick={toggleSidebar} className="toggle-button">
                 <i className={`bx ${isSidebarVisible ? 'bx-x' : 'bx-menu'}`}></i>
-            </button> */}
+            </button>
         </section>
     );
 }
