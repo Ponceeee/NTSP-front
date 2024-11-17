@@ -7,7 +7,7 @@ const Sidebar = () => {
 
     // Function to check if a path is active
     const isActive = (path) => {
-        return location.pathname === path;
+        return location.pathname === `/user${path}`;
     };
 
     return (

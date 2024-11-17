@@ -1,11 +1,12 @@
 import React from 'react';
+import '../../css/ProjectorGrid.css';
 
 const ProjectorGrid = ({ searchTerm, selectedFilters, onItemClick }) => {
     // Sample data - replace with your actual data source
     const projectors = [
         {
             id: 1,
-            image: "/img/DLP.webp",
+            image: "src/assets/DLP.webp",
             name: "Epson 703HD Powerlite Home Cinema LCD Projector",
             status: "AVAILABLE"
         },

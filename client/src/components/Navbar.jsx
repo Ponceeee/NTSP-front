@@ -19,8 +19,8 @@ function Navbar() {
                 <i className='bx bxs-bell'></i>
                 <span className="num">8</span>
             </a>
-            <a href="#" className="profile">
-                <img src="img/profile.jpg" alt="Profile" />
+            <a className="profile">
+                <img src="src/assets/profile.png" alt="Profile" />
             </a>
         </nav>
     );
