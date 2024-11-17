@@ -7,7 +7,6 @@ function Navbar() {
     };
     return (
         <nav>
-            <i className='bx bx-menu' onClick={toggleSidebar}></i>
             <a href="#" className="nav-link">Categories</a>
             <form action="#">
                 <div className="form-input">

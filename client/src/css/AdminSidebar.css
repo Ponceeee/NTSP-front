@@ -308,10 +308,6 @@ body {
 	background-color: #0056b3;
 }
 
-#sidebar {
-	/* ... existing styles ... */
-}
-
 #sidebar.hide {
 	width: 60px; /* Adjust width when hidden */
 }
@@ -324,11 +320,36 @@ body {
 	color: var(--dark);
 	font-size: 24px; /* Adjust size as needed */
 	position: absolute; /* Position it appropriately */
-	top: 10px; /* Adjust top position */
-	right: 10px; /* Adjust right position */
+	top: -2px; /* Adjust top position */
+	right: -15px; /* Adjust right position */
 	z-index: 1001; /* Ensure it is above other elements */
 }
-
+#sidebar .brand {
+	height: 56px;
+	display: flex;
+	align-items: center;
+	color: var(--blue);
+	position: relative;
+	top: 20px;
+	left: 0;
+	background: var(--light);
+	z-index: 500;
+	padding-bottom: 20px;
+	box-sizing: content-box;
+}
+#sidebar .brand img {
+	left: 60px;
+    min-width: 60px;
+    max-width: 60px;
+    justify-content: center;
+}
+#sidebar .brand .text {
+	position: absolute;
+	top: 25px;
+	left: 130px;
+	font-size: 24px;
+	font-weight: 700;
+}
 .side-menu li.active {
 	background: var(--grey); /* Change background for active item */
 	position: relative;

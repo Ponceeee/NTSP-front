@@ -69,22 +69,6 @@ body {
 	width: 60px;
 }
 
-#sidebar .brand {
-	font-size: 24px;
-	font-weight: 700;
-	height: 56px;
-	display: flex;
-	align-items: center;
-	color: var(--blue);
-	position: sticky;
-	top: 20px;
-	left: 0;
-	background: var(--light);
-	z-index: 500;
-	padding-bottom: 20px;
-	box-sizing: content-box;
-}
-
 #sidebar .brand .bx {
 	min-width: 60px;
 	display: flex;
@@ -221,6 +205,8 @@ body {
 }
 
 #content nav .nav-link {
+    left: -20px;
+	position: relative;
 	font-size: 16px;
 	transition: .3s ease;
 }

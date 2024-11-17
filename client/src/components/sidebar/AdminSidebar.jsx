@@ -16,9 +16,9 @@ function Sidebar() {
                 <img src="src/assets/NSTP_LOGO.png" alt="Admin Logo" className="brand" />
                 <span className="text">Admin</span>
             </a>
-            {/* <button onClick={toggleSidebar} className="toggle-button">
+            <button onClick={toggleSidebar} className="toggle-button" style={{ zIndex: 3000 }}>
                 <i className={`bx ${isSidebarVisible ? 'bx-x' : 'bx-menu'}`}></i>
-            </button> */}
+            </button>
             <ul className="side-menu top">
                 <li className={location.pathname === '/Admin' ? 'active' : ''}>
                     <a href="/Admin"><i className='bx bxs-dashboard'></i><span className="text">Dashboard</span></a>
