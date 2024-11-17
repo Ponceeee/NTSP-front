@@ -13,6 +13,13 @@ import UserRequest from './components/user/UserRequest';
 // import NotificationPage from './components/NotificationPage';
 // import ReportsPage from './components/ReportsPage';
 // import RequestPage from './components/RequestPage';
+import AdminDashboard from './components/admin/AdminDashboard';
+import RequestPage from './components/admin/RequestPage';
+import Editpage from './components/admin/EditPage';
+import ReportsPage from './components/admin/ReportsPage';
+import ArchivedPage from './components/admin/ArchivedPage';
+import AdminActivityPage from './components/admin/AdminActivityPage';
+import NotificationPage from './components/NotificationPage';
 
 function App() {
   return (

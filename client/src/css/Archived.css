@@ -78,7 +78,7 @@ body {
 	align-items: center;
 	color: var(--blue);
 	position: sticky;
-	top: 20px;
+	top: 0;
 	left: 0;
 	background: var(--light);
 	z-index: 500;
@@ -308,6 +308,7 @@ body {
 
 /* MAIN */
 #content main {
+	background: linear-gradient(135deg, #ff6a88, #ff8b67);
 	width: 100%;
 	padding: 36px 24px;
 	font-family: var(--poppins);
@@ -419,7 +420,7 @@ body {
 #content main .table-data > div {
     flex-grow: 1;
     flex-basis: 300px;
-    max-height: 700px; /* Adjust the height as needed */
+    max-height: 300px; /* Adjust the height as needed */
     overflow-y: auto; /* Enables vertical scrolling */
     border-radius: 20px; /* Retain existing styles */
     background: var(--light);
@@ -492,10 +493,6 @@ body {
 
 #content main .table-data .order table tr td .status.R1 {
     background: var(--blue);
-}
-
-#content main .table-data .order table tr td .status.R5 {
-    background: var(--yellow);
 }
 
 #content main .table-data .order table tr td .status.R2 {
