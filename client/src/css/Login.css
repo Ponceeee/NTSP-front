@@ -186,3 +186,7 @@ p {
     width: 100%; /* Ensure full width */
     background-color: transparent; /* Ensure no background color */
 }
+
+main {
+    padding: 0; /* Remove padding */
+}

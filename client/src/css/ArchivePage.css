@@ -27,7 +27,7 @@ body {
 
 /* MAIN */
 main {
-	padding: 36px 24px;
+	padding: 10px;
 	font-family: var(--poppins);
 	min-height: calc(100vh - 56px);
 	overflow-y: auto;

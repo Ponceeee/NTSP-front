@@ -2,9 +2,12 @@ import React from 'react';
 import '../css/Navbar.css';
 
 function Navbar() {
+    const toggleSidebar = () => {
+        setIsSidebarVisible(!isSidebarVisible);
+    };
     return (
         <nav>
-            <i className='bx bx-menu'></i>
+            <i className='bx bx-menu' onClick={toggleSidebar}></i>
             <a href="#" className="nav-link">Categories</a>
             <form action="#">
                 <div className="form-input">

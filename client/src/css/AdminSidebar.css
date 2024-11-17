@@ -54,6 +54,7 @@ body {
 	min-height: calc(100vh - 56px);
 	overflow-y: auto;
 	background-color: #eee;
+	padding: 10px;
 }
 
 #content main .head-title {
@@ -65,6 +66,7 @@ body {
 }
 
 #content main .head-title .left h1 {
+	margin-top: 10px;
 	font-size: 36px;
 	font-weight: 600;
 	color: var(--dark);
@@ -304,4 +306,34 @@ body {
 
 .action-btn:hover {
 	background-color: #0056b3;
+}
+
+#sidebar {
+	/* ... existing styles ... */
+}
+
+#sidebar.hide {
+	width: 60px; /* Adjust width when hidden */
+}
+
+/* Add styles for the toggle button */
+.toggle-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--dark);
+	font-size: 24px; /* Adjust size as needed */
+	position: absolute; /* Position it appropriately */
+	top: 10px; /* Adjust top position */
+	right: 10px; /* Adjust right position */
+	z-index: 1001; /* Ensure it is above other elements */
+}
+
+.side-menu li.active {
+	background: var(--grey); /* Change background for active item */
+	position: relative;
+}
+
+.side-menu li.active a {
+	color: var(--blue); /* Change text color for active item */
 }

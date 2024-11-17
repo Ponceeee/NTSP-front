@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../AdminSidebar';
+import Sidebar from '../sidebar/AdminSidebar';
 import Navbar from '../Navbar';
 import '../../css/ArchivePage.css';
 

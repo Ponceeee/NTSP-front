@@ -1,6 +1,6 @@
 // src/components/ReportsPage.jsx
 import React, { useState, useEffect } from 'react';
-import Sidebar from '../AdminSidebar';
+import Sidebar from '../sidebar/AdminSidebar';
 import Navbar from '../Navbar';
 import '../../css/ReportsPage.css';
 

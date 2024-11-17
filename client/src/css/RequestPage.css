@@ -27,11 +27,11 @@ body {
 
 /* MAIN */
 main {
-	padding: 36px 24px;
 	font-family: var(--poppins);
 	min-height: calc(100vh - 56px);
 	overflow-y: auto;
 	background-color: #eee;
+	padding: 10px;
 }
 
 /* Responsive Design */

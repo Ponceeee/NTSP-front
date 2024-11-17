@@ -68,7 +68,7 @@ body {
 	overflow-y: auto;
    background-color: #eee;
    margin-top: 0;
-   padding-top: 0;
+   padding: 10px;
 }
 
 #content main .head-title {
@@ -83,6 +83,7 @@ body {
 
 #content main .head-title .left h1 {
 	font-size: 36px;
+    margin-top: 10px;
 	font-weight: 600;
 	margin-bottom: 0px;
 	color: var(--dark);

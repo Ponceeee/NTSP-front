@@ -32,7 +32,7 @@ body {
 }
 
 main {
-	padding: 36px 24px; /* Ensure padding is consistent */
+	padding: 10px; /* Remove padding */
 	font-family: var(--poppins);
 	min-height: calc(100vh - 56px); /* Ensure it fills the height */
 	overflow-y: auto; /* Allow scrolling if needed */

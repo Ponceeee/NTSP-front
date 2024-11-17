@@ -1,7 +1,7 @@
 //src/components/UserDashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from '../AdminSidebar';
+import Sidebar from '../sidebar/AdminSidebar';
 import Navbar from '../Navbar';
 import '../../css/AdminDashboard.css';
 

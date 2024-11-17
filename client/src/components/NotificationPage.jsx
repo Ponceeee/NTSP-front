@@ -1,8 +1,8 @@
 // src/components/NotificationPage.jsx
 import React, { useState, useEffect } from 'react';
-import Sidebar from './AdminSidebar';
+import Sidebar from './sidebar/AdminSidebar';
 import Navbar from './Navbar';
-import '../../css/NotificationPage.css';
+import '../css/NotificationPage.css';
 
 function NotificationPage() {
     const [overlayVisible, setOverlayVisible] = useState(false);

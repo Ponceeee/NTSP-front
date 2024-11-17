@@ -45,6 +45,7 @@
 }
 
 #sidebar .side-menu {
+    padding: 0;
     width: 100%;
     margin-top: 48px;
 }
@@ -155,4 +156,8 @@
     #sidebar .side-menu li a {
         font-size: 14px;
     }
+}
+
+#content main {
+    padding: 10px;
 }

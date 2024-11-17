@@ -18,29 +18,29 @@ const Sidebar = () => {
             </Link>
             
             <ul className="side-menu top">
-                <li className={isActive('/dashboard') ? 'active' : ''}>
-                    <Link to="/dashboard">
+                <li className={isActive('/user-dashboard') ? 'active' : ''}>
+                    <Link to="/user-dashboard">
                         <i className='bx bxs-dashboard'></i>
                         <span className="text">Dashboard</span>
                     </Link>
                 </li>
                 
-                <li className={isActive('/requests') ? 'active' : ''}>
-                    <Link to="/requests">
+                <li className={isActive('/user-request') ? 'active' : ''}>
+                    <Link to="/user-request">
                         <i className='bx bxs-shopping-bag-alt'></i>
                         <span className="text">Request</span>
                     </Link>
                 </li>
                 
-                <li className={isActive('/borrowed') ? 'active' : ''}>
-                    <Link to="/borrowed">
+                <li className={isActive('/user-borrowed') ? 'active' : ''}>
+                    <Link to="/user-borrowed">
                         <i className='bx bxs-book'></i>
                         <span className="text">Borrowed Items</span>
                     </Link>
                 </li>
                 
-                <li className={isActive('/reports') ? 'active' : ''}>
-                    <Link to="/reports">
+                <li className={isActive('/user-report') ? 'active' : ''}>
+                    <Link to="/user-report">
                         <i className='bx bxs-report'></i>
                         <span className="text">Reports</span>
                     </Link>

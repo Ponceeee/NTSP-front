@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../Navbar';
-import Sidebar from '../AdminSidebar';
+import Sidebar from '../sidebar/AdminSidebar';
 import '../../css/ActivityPage.css';
 
 const ActivityPage = () => {

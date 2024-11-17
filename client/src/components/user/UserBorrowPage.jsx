@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from '../sidebar/AdminSidebar';
+import Sidebar from '../sidebar/UserSidebar'; // Ensure the correct path
 import Navbar from '../Navbar'; // Ensure the correct path
 import '../../css/Navbar.css';
 import '../../css/RequestPage.css';
 
-function RequestPage() {
+function UserBorrowPage() {
     const [overlayVisible, setOverlayVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState({ title: '', image: '', status: '' });
     const [borrowTime, setBorrowTime] = useState('');
@@ -43,15 +43,15 @@ function RequestPage() {
                 <main>
       <div className="head-title">
         <div className="left">
-          <h1>Request</h1>
+          <h1>Borrowed</h1>
           <ul className="breadcrumb">
             <li>
-              <a href="#">Request</a>
+              <a href="#">Borrowed</a>
             </li>
-            <li><i className="bx bx-chevron-right" /></li>
+            {/* <li><i className="bx bx-chevron-right" /></li>
             <li>
               <a className="active" href="Canceled.html">Canceled</a>
-            </li>
+            </li> */}
           </ul>
         </div>
         {/* <a href="#" class="btn-download">
@@ -62,7 +62,7 @@ function RequestPage() {
       <div className="table-data">
         <div className="pending-requests">
           <div className="head">
-            <h3>Pending Requests</h3>
+            <h3>Borrowed Items</h3>
             <i className="bx bx-filter" />
           </div>
           <div className="order">
@@ -87,4 +87,4 @@ function RequestPage() {
     );
 }
 
-export default RequestPage;
+export default UserBorrowPage;
