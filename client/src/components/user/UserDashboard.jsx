@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserSidebar from '../sidebar/UserSidebar';
 import Navbar from '../Navbar';
-
+import '../../css/UserDashboard.css';
 // Import or define these components
 import ProjectorGrid from './ProjectorGrid';
 import BorrowOverlay from './BorrowOverlay';
@@ -101,29 +101,7 @@ function UserDashboard() {
                         </div>
                     </div>
 
-                    <ul className="box-info">
-                        <li>
-                            <i className='bx bxs-calendar-check'></i>
-                            <span className="text">
-                                <h3>13</h3>
-                                <p>Pending Requests</p>
-                            </span>
-                        </li>
-                        <li>
-                            <i className='bx bxs-group'></i>
-                            <span className="text">
-                                <h3>5</h3>
-                                <p>Active Borrowers</p>
-                            </span>
-                        </li>
-                        <li>
-                            <i className='bx bxs-error-circle'></i>
-                            <span className="text">
-                                <h3>3</h3>
-                                <p>Overdue Items</p>
-                            </span>
-                        </li>
-                    </ul>
+
 
                     <div className="table-data">
                         <div className="order">

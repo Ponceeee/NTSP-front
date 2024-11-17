@@ -7,7 +7,7 @@ const Sidebar = () => {
 
     // Function to check if a path is active
     const isActive = (path) => {
-        return location.pathname === path;
+        return location.pathname === `/user${path}`;
     };
 
     return (
@@ -26,7 +26,7 @@ const Sidebar = () => {
                 </li>
                 
                 <li className={isActive('/requests') ? 'active' : ''}>
-                    <Link to="/requests">
+                    <Link to="/user/requests">
                         <i className='bx bxs-shopping-bag-alt'></i>
                         <span className="text">Request</span>
                     </Link>

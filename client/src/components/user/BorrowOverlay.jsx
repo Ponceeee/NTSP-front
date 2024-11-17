@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import '../../css/BorrowOverlay.css';
 const BorrowOverlay = ({ item, onClose }) => {
     const [bookingDate, setBookingDate] = useState('');
     const [startTime, setStartTime] = useState('');
