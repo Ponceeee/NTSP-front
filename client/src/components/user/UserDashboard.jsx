@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from '../Sidebar';
+import UserSidebar from '../sidebar/UserSidebar';
 import Navbar from '../Navbar';
 
 // Import or define these components
@@ -59,7 +59,7 @@ function UserDashboard() {
                 <title>User Dashboard</title>
             </header>
             
-            <Sidebar />
+            <UserSidebar />
             
             <section id="content">
                 <Navbar onSearch={handleSearch} />
