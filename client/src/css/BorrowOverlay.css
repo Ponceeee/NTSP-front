@@ -1,82 +1,107 @@
-.overlay {
+.borrow-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-.overlay-content {
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
+.borrow-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
     width: 90%;
-    max-width: 600px;
+    max-width: 800px;
     position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.close-button {
+.close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
     color: #666;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
 }
 
-.overlay-header {
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.overlay-header h2 {
-    margin: 0;
+.close-btn:hover {
+    background-color: #f0f0f0;
     color: #333;
 }
 
-.status-badge {
+.item-title {
+    font-size: 28px;
+    color: #333;
+    margin: 0 0 10px 0;
+    padding-right: 40px;
+    line-height: 1.2;
+}
+
+.status-label {
     display: inline-block;
-    padding: 4px 8px;
-    background-color: #4CAF50;
-    color: white;
+    padding: 6px 16px;
     border-radius: 4px;
     font-size: 14px;
-    margin-top: 8px;
+    font-weight: 600;
+    margin: 5px 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
 }
 
-.overlay-body {
+.status-label:hover {
+    background-color: #45a049;
+}
+
+.status-label.alternative1 {
+    background-color: #22c55e;
+}
+
+.status-label.alternative2 {
+    background-color: #16a34a;
+}
+
+.status-label.alternative3 {
+    background-color: #059669;
+}
+
+.status-label.available {
+    background-color: #4CAF50;  /* Green background */
+}
+
+.status-label.not-available {
+    background-color: #f44336;  /* Red background */
+}
+
+.booking-layout {
     display: flex;
-    gap: 20px;
-}
-
-.projector-image {
-    flex: 1;
-}
-
-.projector-image img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 4px;
+    gap: 40px;
+    align-items: flex-start;
 }
 
 .booking-form {
     flex: 1;
-    padding: 20px;
 }
 
 .booking-form h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
+    font-size: 18px;
     color: #333;
+    margin: 0 0 20px 0;
 }
 
 .form-group {
@@ -85,34 +110,65 @@
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     color: #666;
 }
 
 .form-group input {
     width: 100%;
-    padding: 8px;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    border-color: #2196f3;
+    outline: none;
+}
+
+.item-image {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.item-image img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
 }
 
 .book-now-btn {
     width: 100%;
-    padding: 12px;
-    background-color: #2196F3;
+    padding: 14px;
+    background-color: #2196f3;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    font-weight: 600;
+    margin-top: 20px;
 }
 
 .book-now-btn:hover {
-    background-color: #1976D2;
+    background-color: #1976d2;
 }
 
-.book-now-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .booking-layout {
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+
+    .borrow-content {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .item-image img {
+        max-height: 200px;
+    }
 } 

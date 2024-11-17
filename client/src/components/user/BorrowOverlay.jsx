@@ -1,74 +1,76 @@
 import React, { useState } from 'react';
 import '../../css/BorrowOverlay.css';
+
 const BorrowOverlay = ({ item, onClose }) => {
-    const [bookingDate, setBookingDate] = useState('');
+    const [borrowDate, setBorrowDate] = useState('');
     const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
-        try {
-            const requestItem = {
-                id: 'req_' + Date.now(),
-                title: item.name,
-                image: item.image,
-                date: new Date(bookingDate).toLocaleDateString(),
-                time: startTime,
-                status: 'Pending',
-                requestedAt: new Date().toISOString(),
-                itemStatus: item.status
-            };
-
-            // Save to localStorage (replace with your API call)
-            const requestedItems = JSON.parse(localStorage.getItem('requestedItems')) || [];
-            requestedItems.unshift(requestItem);
-            localStorage.setItem('requestedItems', JSON.stringify(requestedItems));
-
-            // Show success message and redirect
-            alert('Request submitted successfully!');
-            onClose();
-
-        } catch (err) {
-            console.error('Error in handleBooking:', err);
-            alert('Error submitting request: ' + err.message);
-        }
+        console.log({
+            itemId: item.id,
+            borrowDate,
+            startTime,
+            endTime
+        });
+        onClose();
     };
 
     return (
-        <div className="overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
-            <div className="overlay-content">
-                <span className="close-btn" onClick={onClose}>&times;</span>
-                <div className="item-details">
-                    <img src={item.image} alt={item.name} />
-                    <div className="details">
-                        <h2>{item.name}</h2>
-                        <p className={`status ${item.status.toLowerCase()}`}>{item.status}</p>
-                        
+        <div className="borrow-overlay" onClick={onClose}>
+            <div className="borrow-content" onClick={e => e.stopPropagation()}>
+                <div className="header-area">
+                    <button className="close-btn" onClick={onClose}>×</button>
+                    <h2 className="item-title">{item.name}</h2>
+                    <div className="status-label">AVAILABLE</div>
+                </div>
+
+                <div className="booking-layout">
+                    <div className="item-image">
+                        <img src={item.image} alt={item.name} />
+                    </div>
+
+                    <div className="booking-form">
+                        <h3>Select Date and Time</h3>
                         <form onSubmit={handleSubmit}>
-                            <div className="booking-details">
-                                <div className="date-picker">
-                                    <h3>Select Date and Time</h3>
-                                    <input
-                                        type="date"
-                                        value={bookingDate}
-                                        onChange={(e) => setBookingDate(e.target.value)}
-                                        min={new Date().toISOString().split('T')[0]}
-                                        required
-                                    />
-                                    <div className="time-slots">
-                                        <div className="time-picker">
-                                            <label>Borrow Time:</label>
-                                            <input
-                                                type="time"
-                                                value={startTime}
-                                                onChange={(e) => setStartTime(e.target.value)}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className="form-group">
+                                <label>Borrow Date:</label>
+                                <input
+                                    type="date"
+                                    value={borrowDate}
+                                    onChange={(e) => setBorrowDate(e.target.value)}
+                                    required
+                                    placeholder="mm/dd/yyyy"
+                                    className="date-input"
+                                />
                             </div>
-                            <button type="submit" className="borrow-btn">Book Now</button>
+
+                            <div className="form-group">
+                                <label>Start Time:</label>
+                                <input
+                                    type="time"
+                                    value={startTime}
+                                    onChange={(e) => setStartTime(e.target.value)}
+                                    required
+                                    className="time-input"
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>End Time:</label>
+                                <input
+                                    type="time"
+                                    value={endTime}
+                                    onChange={(e) => setEndTime(e.target.value)}
+                                    required
+                                    className="time-input"
+                                />
+                            </div>
+
+                            <button type="submit" className="book-now-btn">
+                                Book Now
+                            </button>
                         </form>
                     </div>
                 </div>
