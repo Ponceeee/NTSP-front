@@ -15,7 +15,10 @@ const PORT = process.env.PORT || 3000;
 
 require('dotenv').config();
 require('./config/passport');
-app.use(cors({ origin: 'http://localhost:3001', credentials: true }));
+app.use(cors({
+    origin: ['http://localhost:3001', 'http://localhost:3000'],
+    credentials: true
+}));
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 app.use(express.json());
 

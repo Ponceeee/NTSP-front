@@ -26,8 +26,8 @@ function Sidebar() {
                 <li className={location.pathname === '/request' ? 'active' : ''}>
                     <Link to="/request"><i className='bx bxs-shopping-bag-alt'></i><span className="text">Request</span></Link>
                 </li>
-                <li className={location.pathname === '/edit' ? 'active' : ''}>
-                    <Link to="/edit"><i className='bx bxs-message-square-add'></i><span className="text">Edit Items</span></Link>
+                <li className={location.pathname === '/add' ? 'active' : ''}>
+                    <Link to="/add"><i className='bx bxs-message-square-add'></i><span className="text">Add Items</span></Link>
                 </li>
                 <li className={location.pathname === '/reports' ? 'active' : ''}>
                     <a href="/reports"><i className='bx bxs-report'></i><span className="text">Reports</span></a>

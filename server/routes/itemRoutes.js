@@ -26,7 +26,7 @@ router.get('/:item_id', async (req, res) => {
 });
 
 // Create new item
-router.post('/', async (req, res) => {
+router.post('/additem', async (req, res) => {
     try {
         const newItem = await itemService.createItem(req.body);
         res.status(201).json(newItem);

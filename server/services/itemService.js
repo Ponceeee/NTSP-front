@@ -2,7 +2,14 @@ const Item = require('../models/Item');
 
 const itemService = {
     getAllItems: async () => {
-        return await Item.find();
+        try {
+            const items = await Item.find();
+            console.log('Found items:', items);
+            return items;
+        } catch (error) {
+            console.error('Error in getAllItems:', error);
+            throw error;
+        }
     },
 
     getItemById: async (item_id) => {

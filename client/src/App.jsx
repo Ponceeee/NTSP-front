@@ -13,7 +13,7 @@ import AdminDashboard from './components/admin/AdminDashboard';
 // import ReportsPage from './components/ReportsPage';
 // import RequestPage from './components/RequestPage';
 import RequestPage from './components/admin/RequestPage';
-import Editpage from './components/admin/EditPage';
+import AddItems from './components/admin/AddItems';
 import ReportsPage from './components/admin/ReportsPage';
 import ArchivedPage from './components/admin/ArchivedPage';
 import AdminActivityPage from './components/admin/AdminActivityPage';
@@ -36,7 +36,7 @@ function App() {
         <Route path="/user-dashboard" element={<UserDashboard />} />
         <Route path="/user-borrowed" element={<UserBorrowPage />} />
         <Route path="/user-report" element={<UserReportPage />} />
-        <Route path="/edit" element={<Editpage/>} />
+        <Route path="/add" element={<AddItems/>} />
         <Route path="/reports" element={<ReportsPage/>} />
         <Route path="/archive" element={<ArchivedPage/>} />
         <Route path="/activity" element={<AdminActivityPage/>} />
