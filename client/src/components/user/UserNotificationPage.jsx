@@ -1,8 +1,8 @@
 // src/components/NotificationPage.jsx
 import React, { useState, useEffect } from 'react';
-import Sidebar from './sidebar/AdminSidebar';
-import Navbar from './Navbar';
-import '../css/NotificationPage.css';
+import UserSidebar from '../sidebar/UserSidebar';
+import Navbar from '../Navbar';
+import '../../css/NotificationPage.css';
 
 function NotificationPage() {
     const [overlayVisible, setOverlayVisible] = useState(false);
@@ -37,7 +37,7 @@ function NotificationPage() {
 
     return (
         <div className="admin-dashboard">
-            <Sidebar />
+            <UserSidebar />
             <section id="content">
                 <Navbar className="navbar" />
                 <main>
