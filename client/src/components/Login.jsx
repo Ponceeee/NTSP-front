@@ -82,9 +82,9 @@ function Login() {
                                 <input type="checkbox" name="checkbox" id="checkbox" />
                                 <label className="checkbox" htmlFor="checkbox">Keep me logged in</label>
                                 <button type="submit" className="btn btn-primary mt-3">Login</button>
-                                <p className="line">
-                                    _____________________________________________________________
-                                </p>
+                                <hr className="line">
+                                
+                                </hr>
                                 <div id="google-signin-btn" className="d-flex justify-content-center mt-3 mb-5" style={{ width: '80%', margin: '0 auto', transform: 'scale(1.2)' }}>
                                     <GoogleLogin
                                         onSuccess={onSuccess}

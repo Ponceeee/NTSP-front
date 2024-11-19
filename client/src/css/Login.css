@@ -190,3 +190,9 @@ p {
 main {
     padding: 0; /* Remove padding */
 }
+hr{
+    width: auto;
+    color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+}
