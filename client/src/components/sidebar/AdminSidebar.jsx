@@ -40,7 +40,12 @@ function Sidebar() {
                 </li>
             </ul>
             <ul className="side-menu">
-                <li><a href="../login/login.html" className="logout"><i className='bx bxs-log-out-circle'></i><span className="text">Logout</span></a></li>
+                <li>
+                    <Link to="/login" className="logout">
+                        <i className='bx bxs-log-out-circle'></i>
+                        <span className="text">Logout</span>
+                    </Link>
+                </li>
             </ul>
         </section>
     );
