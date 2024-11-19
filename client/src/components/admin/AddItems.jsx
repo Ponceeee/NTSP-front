@@ -4,11 +4,11 @@ import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import Sidebar from '../sidebar/AdminSidebar';
 import Navbar from '../Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/EditPage.css';
 
 function AddItems() {
     const [items, setItems] = useState([]);
-    const [overlayVisible, setOverlayVisible] = useState(false);
     const [formData, setFormData] = useState({
         item_id: '',
         name: '',
@@ -18,6 +18,7 @@ function AddItems() {
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     const columns = [
         {
@@ -46,7 +47,7 @@ function AddItems() {
             cell: row => (
                 <div className="actions">
                     <button 
-                        onClick={() => openEditOverlay(row)}
+                        onClick={() => handleShowModal(row)}
                         className="edit-btn"
                     >
                         <i className='bx bx-edit'></i>
@@ -127,7 +128,7 @@ function AddItems() {
             } else {
                 await axios.post('http://localhost:3000/items/additem', formData);
             }
-            closeOverlay();
+            handleCloseModal();
             fetchItems();
         } catch (error) {
             console.error('Error saving item:', error);
@@ -145,7 +146,24 @@ function AddItems() {
         }
     };
 
-    const openAddOverlay = () => {
+    const handleShowModal = (item = null) => {
+        if (item) {
+            setFormData(item);
+            setIsEditing(true);
+        } else {
+            setFormData({
+                item_id: '',
+                name: '',
+                description: '',
+                category: ''
+            });
+            setIsEditing(false);
+        }
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
         setFormData({
             item_id: '',
             name: '',
@@ -153,23 +171,6 @@ function AddItems() {
             category: ''
         });
         setIsEditing(false);
-        setOverlayVisible(true);
-    };
-
-    const openEditOverlay = (item) => {
-        setFormData(item);
-        setIsEditing(true);
-        setOverlayVisible(true);
-    };
-
-    const closeOverlay = () => {
-        setOverlayVisible(false);
-        setFormData({
-            item_id: '',
-            name: '',
-            description: '',
-            category: ''
-        });
     };
 
     return (
@@ -182,7 +183,10 @@ function AddItems() {
                         <div className="left">
                             <h1>Items Management</h1>
                         </div>
-                        <button onClick={openAddOverlay} className="add-button">
+                        <button 
+                            className="btn btn-primary add-button" 
+                            onClick={() => handleShowModal()}
+                        >
                             <i className='bx bx-plus'></i>
                             Add New Item
                         </button>
@@ -209,64 +213,94 @@ function AddItems() {
                             />
                         </div>
                     </div>
+
+                    {/* Bootstrap Modal */}
+                    <div className={`modal fade ${showModal ? 'show' : ''}`} 
+                         style={{ display: showModal ? 'block' : 'none' }}
+                         tabIndex="-1"
+                         role="dialog"
+                         aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title">
+                                        {isEditing ? 'Edit Item' : 'Add New Item'}
+                                    </h5>
+                                    <button 
+                                        type="button" 
+                                        className="btn-close" 
+                                        onClick={handleCloseModal}
+                                        aria-label="Close"
+                                    ></button>
+                                </div>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="modal-body">
+                                        <div className="mb-3">
+                                            <label className="form-label">Item ID:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="item_id"
+                                                value={formData.item_id}
+                                                onChange={handleInputChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Name:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="name"
+                                                value={formData.name}
+                                                onChange={handleInputChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Description:</label>
+                                            <textarea
+                                                className="form-control"
+                                                name="description"
+                                                value={formData.description}
+                                                onChange={handleInputChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Category:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="category"
+                                                value={formData.category}
+                                                onChange={handleInputChange}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button 
+                                            type="button" 
+                                            className="btn btn-secondary" 
+                                            onClick={handleCloseModal}
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button 
+                                            type="submit" 
+                                            className="btn btn-primary"
+                                        >
+                                            {isEditing ? 'Update Item' : 'Add Item'}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {showModal && <div className="modal-backdrop fade show"></div>}
                 </main>
             </section>
-
-            {/* Overlay Form */}
-            {overlayVisible && (
-                <div className="overlay">
-                    <div className="overlay-content">
-                        <h2>{isEditing ? 'Edit Item' : 'Add New Item'}</h2>
-                        <span className="close-btn" onClick={closeOverlay}>&times;</span>
-                        <form onSubmit={handleSubmit}>
-                            <div className="form-group">
-                                <label>Item ID:</label>
-                                <input
-                                    type="text"
-                                    name="item_id"
-                                    value={formData.item_id}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Name:</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Description:</label>
-                                <textarea
-                                    name="description"
-                                    value={formData.description}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Category:</label>
-                                <input
-                                    type="text"
-                                    name="category"
-                                    value={formData.category}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </div>
-                            <div className="form-actions">
-                                <button type="submit" className="submit-btn">
-                                    {isEditing ? 'Update Item' : 'Add Item'}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }

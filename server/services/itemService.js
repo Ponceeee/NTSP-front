@@ -4,7 +4,7 @@ const itemService = {
     getAllItems: async () => {
         try {
             const items = await Item.find();
-            console.log('Found items:', items);
+          
             return items;
         } catch (error) {
             console.error('Error in getAllItems:', error);
